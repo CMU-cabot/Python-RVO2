@@ -121,6 +121,18 @@ namespace RVO {
 		return agents_.size() - 1;
 	}
 
+	void RVOSimulator::removeAgent(size_t agentNo)
+	{
+		delete agents_[agentNo];
+		agents_.erase(agents_.begin() + agentNo);
+		for (size_t i = agentNo; i < agents_.size(); ++i) {
+			agents_[i]->id_ -= 1;
+		}
+
+		delete kdTree_;
+		kdTree_ = new KdTree(this);
+	}
+
 	size_t RVOSimulator::addObstacle(const std::vector<Vector2> &vertices)
 	{
 		if (vertices.size() < 2) {

@@ -192,6 +192,16 @@ namespace RVO {
 						const Vector2 &velocity = Vector2());
 
 		/**
+		 * \brief   Removes an agent from the simulation.
+		 * \param   agentNo  The number of the agent that is to be removed.
+		 * \note       IDs for agents[agentNo+1,...,getNumAgents()-1] should be updated
+		 * 			   by decreasing 1 after this function is called.
+		 *			   This function initializes KdTree,
+		 *			   processObstacles() should be called again if obstacles are used.
+		 */
+		void removeAgent(size_t agentNo);
+
+		/**
 		 * \brief      Adds a new obstacle to the simulation.
 		 * \param      vertices        List of the vertices of the polygonal
 		 *             obstacle in counterclockwise order.
